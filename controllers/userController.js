@@ -3,12 +3,11 @@ const User = require('../models/User');
 // route POST api/v1/users
 // desc Register a user
 //access Privat
-exports.getAll = async (req, res) => {
+exports.getUser = async (req, res) => {
 	try {
-		const users = await User.find({});
 		res.status(200).json({
 			status : 'Success',
-			data   : users
+			data   : req.user
 		});
 	} catch (err) {
 		console.log(err.message);

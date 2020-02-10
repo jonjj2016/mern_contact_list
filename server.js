@@ -11,10 +11,8 @@ app.use(express.json({ extended: false }));
 // import routes
 const contactRoutes = require('./routs/contacts');
 const userRoutes = require('./routs/users');
-const authRoutes = require('./routs/auth');
 //mount Routes
 app.use('/api/v1/users', userRoutes);
-app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/contacts', contactRoutes);
 
 const PORT = parseInt(process.env.PORT) || 5200;
