@@ -1,16 +1,18 @@
 const express = require('express');
-const router = express.Router();
-// route GET api/v1/users
-// desc Get all users
-//access Privat
-router.get('/', (req, res) => {
-	res.status(200).json({ msg: 'here all users' });
-});
-// route POST api/v1/users
-// desc Register a user
-//access Public
-router.get('/', (req, res) => {
-	res.status(200).json({ msg: 'here all users' });
-});
+const { register, getAll, deleteUser } = require('../controllers/userController');
+const { check } = require('express-validator');
 
+const router = express.Router();
+
+router.post(
+	'/',
+	[
+		check('name', 'Please add name').not().isEmpty(),
+		check('email', 'Please include a valid email').isEmail(),
+		check('password', 'Please enter a password with minimum 6 characters').isLength({ min: 6 })
+	],
+	register
+);
+router.get('/', getAll);
+router.delete('/:id', deleteUser);
 module.exports = router;
