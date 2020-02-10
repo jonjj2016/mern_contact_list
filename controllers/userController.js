@@ -1,42 +1,4 @@
 const User = require('../models/User');
-const { validationResult } = require('express-validator');
-//Create and send jwt token to user
-const sendTokenResponse = (user, statusCode, res) => {
-	const token = user.getSinedJwtToken();
-	res.status(statusCode).json({
-		status : 'Success',
-		token  : token,
-		data   : user
-	});
-};
-// route POST api/v1/users
-// desc Register a user
-//access Public
-exports.register = async (req, res) => {
-	const errors = validationResult(req);
-	if (!errors.isEmpty()) {
-		return res.status(400).json({ errors: errors.array() });
-	}
-	try {
-		const checkUser = await User.findOne({ email: req.body.email });
-		if (checkUser) {
-			return res.status(400).json({
-				status  : 'Fail',
-				message : 'Email has allready registered'
-			});
-		}
-		const user = await User.create(req.body);
-
-		sendTokenResponse(user, 200, res);
-	} catch (err) {
-		res.status(500).json({
-			status  : 'Fail',
-			message : 'Server Error'
-		});
-	}
-
-	//res.status(200).json({ msg: 'here all users' });
-};
 
 // route POST api/v1/users
 // desc Register a user

@@ -17,5 +17,5 @@ app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/contacts', contactRoutes);
 
-const PORT = parseInt(process.env.PORT) || 5000;
+const PORT = parseInt(process.env.PORT) || 5200;
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
