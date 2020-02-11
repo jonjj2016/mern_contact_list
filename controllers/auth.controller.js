@@ -1,11 +1,6 @@
 const User = require('../models/User');
-const { validationResult } = require('express-validator');
-const checkForValidation = (req, res) => {
-	const errors = validationResult(req);
-	if (!errors.isEmpty()) {
-		return res.status(400).json({ errors: errors.array() });
-	}
-};
+const { checkForValidation } = require('../utils');
+
 //Create and send jwt token to user
 const sendTokenResponse = (user, statusCode, res) => {
 	const token = user.getSinedJwtToken();
