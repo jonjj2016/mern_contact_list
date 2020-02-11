@@ -41,12 +41,12 @@ exports.postOne = async (req, res) => {
 // @route Get api/v1/contacts/:id
 // @desc get specific contact
 //@access Privat
-// exports.getOne = await(req, res, next) => {
-// 	try{
-// 		//const contact=
-// 	}catch(err){}
-// 	res.status(200).json({ msg: 'get one contact' });
-// };
+exports.getOne = async (req, res, next) => {
+	try {
+		//const contact=
+	} catch (err) {}
+	res.status(200).json({ msg: 'get one contact' });
+};
 // @route POST api/v1/contacts/:id
 // @desc update existing cotact
 //@access Privat
